@@ -1,5 +1,5 @@
 import reactLogo from "./assets/react.svg";
-import profihostLogo from "./assets/profihost.svg"; // Du musst dieses Logo erstellen oder beschaffen
+import profihostLogo from "./assets/profihost.svg"; 
 // import './App.css'
 import "./tutorial.css";
 import { useState } from "react";
@@ -69,7 +69,7 @@ DirectoryIndex disabled
 RewriteEngine On
 
 # Leite alle Anfragen an deinen React-Server weiter
-RewriteRule (.*) http://127.0.0.1:3000/$1 [P,L]
+RewriteRule (.*) http://localhost:4173/$1 [P,L]
 
 # Setze Header
 Header set Access-Control-Allow-Origin "*"
