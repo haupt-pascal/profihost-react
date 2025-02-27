@@ -1,0 +1,9 @@
+DirectoryIndex disabled
+
+RewriteEngine On
+
+# Leite alle Anfragen an deinen React-Server weiter
+RewriteRule (.*) http://localhost:4173/$1 [P,L]
+
+# Setze Header
+Header set Access-Control-Allow-Origin "*"
