@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source /home/YOUR_USER/.profile && cd /ENTER/YOUR/PATH && npm run build && npm run preview
+source /home/promrbeu/.profile && cd /home/promrbeu/profihost-react && npm run build && serve -s dist -l 4173
