@@ -76,68 +76,21 @@ This will generate optimized files in the `dist` directory.
 
 ### 1. Set Up a Service Daemon
 
-To serve your React application continuously:
-
+To keep your React Application up and running you need to set up a service daemon.
 ```bash
-# Create a daemon configuration file
-cat > react-daemon.json << 'EOL'
-{
-  "apps": [
-    {
-      "name": "react-app",
-      "cwd": "/home/your-username/my-react-app",
-      "script": "node",
-      "args": "./server.js",
-      "exec_mode": "fork",
-      "instances": 1,
-      "autorestart": true,
-      "max_memory_restart": "1G",
-      "env": {
-        "HOST": "127.0.0.1",
-        "PORT": "3000",
-        "NODE_ENV": "production"
-      }
-    }
-  ]
-}
-EOL
+# Download the preconfigured daemon script
+wget -O nuxt-daemon.json https://raw.githubusercontent.com/haupt-pascal/profihost-nuxt/main/daemon.sh
 ```
 
-Create a simple server to serve your static files:
-
-```bash
-# Create a server.js file in your project root
-cat > server.js << 'EOL'
-const express = require('express');
-const path = require('path');
-const app = express();
-
-// Serve static files from the 'dist' directory
-app.use(express.static(path.join(__dirname, 'dist')));
-
-// All routes should serve the index.html for SPA
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-EOL
-
-# Install Express
-npm install express
-```
-
-After creating the daemon file:
+After downloading the daemon file:
 
 1. Log in to your Profihost customer center
 2. Navigate to your server settings
 3. Look for the "Daemon" or "Service Daemon" option
-4. Upload the `react-daemon.json` file
-5. Configure the daemon with the path to your application
-6. Activate the daemon
+4. Upload the `daemon.sh` file to your storage
+5. Adjust the paths within the script as needed
+6. Set the path to the script as the command/script
+7. Activate the daemon
 
 ### 2. Configure Reverse Proxy with .htaccess
 
@@ -161,17 +114,6 @@ RewriteRule (.*) http://127.0.0.1:3000/$1 [P,L]
 Header set Access-Control-Allow-Origin "*"
 Header set X-Content-Type-Options "nosniff"
 EOL
-```
-
-## Configuration for React Router
-
-If you're using React Router, ensure your server is configured to handle client-side routing:
-
-```javascript
-// In your server.js
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
 ```
 
 ## Styling

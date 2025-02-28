@@ -18,7 +18,29 @@ function App() {
       </div>
       <h1>Vite + React ... bei Profihost!</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button 
+          onClick={() => setCount((count) => count + 1)}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#646cff',
+            color: 'white',
+            borderRadius: '8px',
+            border: 'none',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#535bf2';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#646cff';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
           count is {count}
         </button>
         <p>
@@ -28,6 +50,35 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div className="tutorial-button-container">
+        <a 
+          href="/tutorial" 
+          className="tutorial-button"
+          style={{
+            padding: '12px 24px',
+            backgroundColor: '#646cff',
+            color: 'white',
+            borderRadius: '8px',
+            textDecoration: 'none',
+            fontSize: '18px',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'all 0.3s ease',
+            display: 'inline-block',
+            margin: '20px 0'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#535bf2';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#646cff';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          Go to Tutorial →
+        </a>
+      </div>
     </>
   )
 }
