@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import AppTutorial from './AppTutorial'
 
-function App() {
+function HomePage() {
   const [count, setCount] = useState(0)
 
   return (
@@ -51,8 +53,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="tutorial-button-container">
-        <a 
-          href="/tutorial" 
+        <Link 
+          to="/tutorial" 
           className="tutorial-button"
           style={{
             padding: '12px 24px',
@@ -77,9 +79,18 @@ function App() {
           }}
         >
           Go to Tutorial →
-        </a>
+        </Link>
       </div>
     </>
+  )
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/tutorial" element={<AppTutorial />} />
+    </Routes>
   )
 }
 

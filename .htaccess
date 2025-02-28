@@ -2,8 +2,13 @@ DirectoryIndex disabled
 
 RewriteEngine On
 
-# Leite alle Anfragen an deinen React-Server weiter
-RewriteRule (.*) http://172.16.124.241:4173/$1 [P,L]
+# Handle requests for existing files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect all other requests to the index.html
+RewriteRule (.*) http://172.16.124.241:4173/index.html [P,L]
 
 # Setze Header
 Header set Access-Control-Allow-Origin "*"
