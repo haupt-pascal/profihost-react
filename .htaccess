@@ -2,13 +2,7 @@ DirectoryIndex disabled
 
 RewriteEngine On
 
-# Handle requests for existing files or directories
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
 
-# Redirect all other requests to the index.html
-RewriteRule (.*) http://172.16.124.241:4173/index.html [P,L]
-
-# Setze Header
-Header set Access-Control-Allow-Origin "*"
+RewriteRule (.*)  http://DAEMON_IP_ADDRESS:3000/$1 [P,L]
