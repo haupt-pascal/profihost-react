@@ -68,11 +68,10 @@ DirectoryIndex disabled
 
 RewriteEngine On
 
-# Leite alle Anfragen an deinen React-Server weiter
-RewriteRule (.*) http://localhost:4173/$1 [P,L]
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
 
-# Setze Header
-Header set Access-Control-Allow-Origin "*"
+RewriteRule (.*)  http://DAEMON_IP_ADDRESS:3000/$1 [P,L]
 EOL`,
     },
   ];
